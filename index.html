@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert Tunnel de Vente - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --blue: #0f3460;
+            --violet: #533483;
+            --white: #fff;
+            --glass: rgba(255,255,255,0.15);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            --radius: 20px;
+            --transition: 0.4s cubic-bezier(.77,0,.175,1);
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        body, html {
+            width: 100%;
+            min-height: 100vh;
+            scroll-behavior: smooth;
+            background: #1a1a2e;
+            color: var(--white);
+            overflow-x: hidden;
+        }
+        /* Animated Gradient Background */
+        body::before {
+            content: "";
+            position: fixed;
+            z-index: -1;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(120deg, #000 0%, #0f3460 40%, #533483 70%, #fff 100%);
+            animation: gradientMove 10s ease-in-out infinite alternate;
+            filter: blur(8px);
+        }
+        @keyframes gradientMove {
+            0% {background-position: 0% 50%;}
+            100% {background-position: 100% 50%;}
+        }
+        header {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #fff 0%, #0f3460 50%, #533483 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInDown 1.2s;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-top: 1.2rem;
+            color: #fff;
+            opacity: 0.85;
+            animation: fadeInUp 1.2s 0.3s both;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        nav {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            background: var(--glass);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.7rem 0;
+        }
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 0.4rem 1rem;
+            border-radius: var(--radius);
+            transition: background var(--transition), color var(--transition);
+        }
+        nav a:hover, nav a.active {
+            background: rgba(83,52,131,0.2);
+            color: #533483;
+        }
+        /* Section Styles */
+        section {
+            padding: 5rem 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .section-title {
+             font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg, #0f3460 0%, #533483 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block; /* nécessaire pour le background-clip */
+        }
+        /* About Section */
+        .about-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+            animation: fadeInUp 1.2s;
+        }
+        .about-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: var(--glass);
+            border: 3px solid #533483;
+            flex-shrink: 0;
+            animation: floatPhoto 3s infinite alternate;
+        }
+        @keyframes floatPhoto {
+            0% { transform: translateY(0);}
+            100% { transform: translateY(-16px);}
+        }
+        .about-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .about-bio {
+            max-width: 500px;
+        }
+        .about-bio p {
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            color: #e0e0e0;
+        }
+        .skills-list {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .skill {
+            background: var(--glass);
+            box-shadow: var(--shadow);
+            border-radius: var(--radius);
+            padding: 0.7rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-weight: 500;
+            color: #fff;
+            font-size: 1rem;
+            transition: transform var(--transition), box-shadow var(--transition);
+            cursor: pointer;
+        }
+        .skill:hover {
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 12px 32px 0 rgba(83,52,131,0.25);
+            background: rgba(83,52,131,0.25);
+            color: #fff;
+        }
+        /* Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            animation: fadeInUp 1.2s;
+        }
+        .portfolio-item {
+            background: var(--glass);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            position: relative;
+            transition: transform var(--transition), box-shadow var(--transition);
+            cursor: pointer;
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        .portfolio-item:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 16px 40px 0 rgba(83,52,131,0.25);
+            background: rgba(15,52,96,0.25);
+        }
+        .portfolio-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 2px solid #533483;
+            transition: filter var(--transition);
+        }
+        .portfolio-item:hover .portfolio-img {
+            filter: brightness(0.85) blur(1px);
+        }
+        .portfolio-content {
+            padding: 1.2rem;
+            color: #fff;
+        }
+        .portfolio-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .portfolio-desc {
+            font-size: 0.98rem;
+            opacity: 0.85;
+        }
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            justify-content: center;
+            align-items: flex-start;
+            animation: fadeInUp 1.2s;
+        }
+        /* .contact-form {
+            background: var(--glass);
+            box-shadow: var(--shadow);
+            border-radius: var(--radius);
+            padding: 2rem;
+            min-width: 300px;
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .contact-form input, .contact-form textarea {
+            background: rgba(255,255,255,0.08);
+            border: none;
+            border-radius: var(--radius);
+            padding: 0.8rem 1rem;
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            outline: none;
+            transition: background var(--transition);
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            background: rgba(83,52,131,0.18);
+        } */
+        /* .contact-form button {
+            background: linear-gradient(90deg, #0f3460 0%, #533483 100%);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius);
+            padding: 0.9rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: background var(--transition), transform var(--transition);
+            margin-top: 0.5rem;
+        } */
+        /* .contact-form button:hover {
+            background: linear-gradient(90deg, #533483 0%, #0f3460 100%);
+            transform: scale(1.04);
+        } */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            min-width: 220px;
+            align-items: flex-start;
+            justify-content: center;
+        }
+        .contact-info a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            background: var(--glass);
+            padding: 0.7rem 1.2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: background var(--transition), color var(--transition);
+        }
+        .contact-info a:hover {
+            background: rgba(15,52,96,0.25);
+            color: #533483;
+        }
+        /* Glassmorphic Button */
+        .glass-btn {
+            background: var(--glass);
+            box-shadow: var(--shadow);
+            border-radius: var(--radius);
+            padding: 1rem 2rem;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: background var(--transition), color var(--transition), transform var(--transition);
+            margin-bottom: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+        .glass-btn:hover {
+            background: linear-gradient(90deg, #0f3460 0%, #533483 100%);
+            color: #fff;
+            transform: scale(1.05);
+        }
+        /* Parallax effect for section backgrounds */
+        .parallax-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.18;
+            background: linear-gradient(120deg, #0f3460 0%, #533483 100%);
+            filter: blur(12px);
+            animation: parallaxMove 8s infinite alternate;
+        }
+        @keyframes parallaxMove {
+            0% {transform: translateY(0);}
+            100% {transform: translateY(40px);}
+        }
+        /* Responsive */
+        @media (max-width: 900px) {
+            .about-container, .contact-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            section {
+                padding: 4rem 1rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .hero-title { font-size: 2rem;}
+            .section-title { font-size: 1.3rem;}
+            .about-photo { width: 120px; height: 120px;}
+            .portfolio-grid { grid-template-columns: 1fr;}
+            .contact-form { padding: 1rem;}
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#accueil" class="active">Accueil</a></li>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <!-- <li><a href="#contact">Contact</a></li> -->
+        </ul>
+    </nav>
+    <header id="accueil">
+        <div class="parallax-bg"></div>
+        <h1 class="hero-title">Expert en Création de Tunnels de Vente</h1>
+        <p class="hero-subtitle">Des tunnels performants, du copywriting stratégique et l'automatisation marketing pour booster vos conversions.</p>
+        <a href="#contact" class="glass-btn" style="margin-top:2.5rem;">
+            <i class="fa-solid fa-phone"></i> Prendre un RDV
+        </a>
+
+        <!-- Logo DCMFunnel défilant -->
+<div style="overflow: hidden; white-space: nowrap; margin-top: 1.5rem;">
+  <div id="logoScroll" style="display: inline-block; animation: scrollLogo 20s linear infinite;">
+    <span style="font-size: 1.5rem; color: #fff; font-weight: bold; margin-right: 3rem;">
+      <i class="fa-solid fa-bolt" style="color:#533483;"></i> DCMFunnel
+    </span>
+    <span style="font-size: 1.5rem; color: #fff; font-weight: bold; margin-right: 3rem;">
+      <i class="fa-solid fa-bolt" style="color:#533483;"></i> DCMFunnel
+    </span>
+    <span style="font-size: 1.5rem; color: #fff; font-weight: bold; margin-right: 3rem;">
+      <i class="fa-solid fa-bolt" style="color:#533483;"></i> DCMFunnel
+    </span>
+    <!-- Répétez pour rendre l'effet infini fluide -->
+  </div>
+</div>
+
+<style>
+@keyframes scrollLogo {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+</style>
+    </header>
+    <section id="about">
+        <div class="parallax-bg"></div>
+        <h2 class="section-title">À propos de moi</h2>
+        <div class="about-container">
+            <div class="about-photo">
+                <img src="images/profile-pic (25).png" alt="Photo de profil">
+            </div>
+            <div class="about-bio">
+                <p>
+                    Passionné par le marketing digital, j'accompagne les entrepreneurs et entreprises dans la création de tunnels de vente ultra-performants. Mon expertise : copywriting, automatisation et optimisation pour maximiser vos résultats.
+                </p>
+                <div class="skills-list">
+                    <div class="skill"><i class="fa-solid fa-funnel-dollar"></i> Création de tunnels de vente</div>
+                    <div class="skill"><i class="fa-solid fa-pen-nib"></i> Copywriting</div>
+                    <div class="skill"><i class="fa-solid fa-robot"></i> Automatisation marketing</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="portfolio">
+        <div class="parallax-bg"></div>
+        <h2 class="section-title">Les Tunnels Que Je Réalise Souvent</h2>
+        <div class="portfolio-grid" id="portfolioGrid">
+            <!-- Portfolio items -->
+            <div class="portfolio-item">
+                <img class="portfolio-img" src="images/Capture d'écran 2025-07-21 212701.png">
+                <div class="portfolio-content">
+                    <div class="portfolio-title">Lead Magnet</div>
+                    <div class="portfolio-desc">Tunnel optimisé pour infopreneurs, obtenir des mails en offrant un produit gratuit ebook par exemple .</div>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img class="portfolio-img" src="images/Capture d'écran 2025-07-21 220122.png" alt="Projet 2">
+                <div class="portfolio-content">
+                    <div class="portfolio-title">Tunnel e-commerce</div>
+                    <div class="portfolio-desc">Tunnel de vente pour boutique en ligne, séquences email automatisées et pages de vente persuasives.</div>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img class="portfolio-img" src="images/Capture d'écran 2025-07-21 215530.png" alt="Projet 3">
+                <div class="portfolio-content">
+                    <div class="portfolio-title">Landing Pages</div>
+                    <div class="portfolio-desc">Convertir les visiteurs en leads qualifiés ou en clients.Capture d'adresses e-mail et proposition d'une offre précise (webinaire, ebook, consultation, produit digital, etc.)..</div>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img class="portfolio-img" src="images/Capture d'écran 2025-07-21 214244.png" alt="Projet 4">
+                <div class="portfolio-content">
+                    <div class="portfolio-title">Tunnel formation en ligne</div>
+                    <div class="portfolio-desc">Tunnel pour lancement de formation, pages de vente, upsell et automatisations marketing.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+      <!-- Nouvelle section PDF interactive en zigzag -->
+  <section id="pdf-gallery">
+    <div class="parallax-bg"></div>
+    <h2 class="section-title">Études de Cas</h2>
+    <div class="zigzag-gallery">
+      <div class="zigzag-item left">
+        <div class="zigzag-img">
+          <a href="pdfs/tunnel webinaire.pdf" target="_blank">
+            <img src="images/Capture d'écran 2025-07-21 210344.png" alt="Étude de cas 1">
+          </a>
+        </div>
+        <div class="zigzag-desc">
+          <h3>Tunnel Webinaire</h3>
+          <p>Découvrez le tunnel pour le lancement d'un webianire. Cliquez sur l'image pour visualiser l'étude de cas complète en PDF.</p>
+          <a href="pdfs/tunnel webinaire.pdf" class="glass-btn" download>Télécharger le PDF</a>
+        </div>
+      </div>
+      <div class="zigzag-item right">
+        <div class="zigzag-img">
+          <a href="pdfs/tunnel formateur.pdf" target="_blank">
+            <img src="images/Capture d'écran 2025-07-21 211252.png" alt="Étude de cas 2">
+          </a>
+        </div>
+        <div class="zigzag-desc">
+          <h3>Tunnel de Vente pour Formateurs Et Coachs</h3>
+          <p>Analyse stratégique d'un tunnel haut de gamme pour coachs professionnels. Visualisez le PDF complet en cliquant sur l'image.</p>
+          <a href="pdfs/tunnel formateur.pdf" class="glass-btn" download>Télécharger le PDF</a>
+        </div>
+      </div>
+         <div class="zigzag-item left">
+        <div class="zigzag-img">
+          <a href="pdfs/pdf lancemenr produit.pdf" target="_blank">
+            <img src="images/Capture d'écran 2025-07-21 204511.png" alt="Étude de cas 1">
+          </a>
+        </div>
+        <div class="zigzag-desc">
+          <h3>Tunnel de Lancement Produit</h3>
+          <p>Découvrez le tunnel de vente conçu pour un lancement réussi. Cliquez sur l'image pour visualiser l'étude de cas complète en PDF.</p>
+          <a href="pdfs/pdf lancemenr produit.pdf" class="glass-btn" download>Télécharger le PDF</a>
+        </div>
+      </div>
+       <div class="zigzag-item right">
+        <div class="zigzag-img">
+          <a href="pdfs/tunnel de vente saas.pdf" target="_blank">
+            <img src="images/Capture d'écran 2025-07-21 205651.png" alt="Étude de cas 2">
+          </a>
+        </div>
+        <div class="zigzag-desc">
+          <h3>Tunnel de Vente  SaaS</h3>
+          <p>Analyse stratégique d'un tunnel haut de gamme pour la vente d'un logiciel Saas. Visualisez le PDF complet en cliquant sur l'image.</p>
+          <a href="pdfs/tunnel de vente saas.pdf" class="glass-btn" download>Télécharger le PDF</a>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+
+
+    <section id="contact">
+        <div class="parallax-bg"></div>
+        <h2 class="section-title">Contact</h2>
+        <h3>Contactez moi par mail ou par whatsaap pour vos services</h3>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <!-- <a href="https://calendly.com/" target="_blank" class="glass-btn">
+                    <i class="fa-solid fa-calendar-days"></i> Prendre un appel Calendly
+                </a> -->
+                <a href="mailto:dcmfunnel@gmail.com">
+                    <i class="fa-solid fa-envelope"></i>dcmfunnel@gmail.com
+                </a>
+                <a href="tel:+221 77 289 08 70">
+                    <i class="fa-solid fa-phone"></i> +221 77 289 08 70
+                </a>
+            </div>
+            <!-- <form class="contact-form" autocomplete="off">
+                <input type="text" name="name" placeholder="Votre nom" required>
+                <input type="email" name="email" placeholder="Votre email" required>
+                <textarea name="message" rows="4" placeholder="Votre message" required></textarea>
+                <button type="submit"><i class="fa-solid fa-paper-plane"></i> Envoyer</button>
+            </form> -->
+               <div class="faq-section" style="margin-top:4rem;">
+        <h3 class="section-title">FAQ</h3>
+
+        <div class="faq-item">
+          <div class="faq-toggle">1. En quoi consiste un tunnel de vente ?</div>
+          <div class="faq-answer">Un tunnel de vente est une série de pages optimisées qui guide vos visiteurs vers l’achat, étape par étape, en maximisant les conversions.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-toggle">2. Combien de temps faut-il pour créer un tunnel ?</div>
+          <div class="faq-answer">En général, la création prend entre 5 et 10 jours ouvrés, selon la complexité de votre projet et vos objectifs.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-toggle">3. Est-ce que j'aurai un accompagnement personnalisé ?</div>
+          <div class="faq-answer">Oui, je propose un accompagnement 100% personnalisé, de la stratégie à la mise en ligne, pour vous aider à atteindre vos objectifs.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-toggle">4. Quels outils utilisez-vous pour créer les tunnels ?</div>
+          <div class="faq-answer">J’utilise principalement Systeme.io, un outil tout-en-un efficace pour construire, automatiser et gérer vos tunnels de vente facilement.</div>
+        </div>
+        <style>
+    .faq-toggle {
+      cursor: pointer;
+      font-weight: bold;
+      padding: 10px;
+      background-color: #f5f5f5;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      color: #000;
+    }
+    .faq-answer {
+      display: none;
+      padding: 10px;
+      background-color: #ffffff0d;
+      margin-bottom: 20px;
+      border-left: 3px solid #3498db;
+    }
+    .faq-section h3 {
+      margin-top: 3rem;
+    }
+  </style>
+<script>
+          // FAQ toggle script
+        document.querySelectorAll('.faq-toggle').forEach(toggle => {
+          toggle.addEventListener('click', () => {
+            const answer = toggle.nextElementSibling;
+            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+          });
+        });
+</script>
+      </div>
+        </div>
+    </section>
+
+ <style>
+    .zigzag-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+      animation: fadeInUp 1.2s;
+    }
+    .zigzag-item {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    .zigzag-item.left {
+      flex-direction: row;
+    }
+    .zigzag-item.right {
+      flex-direction: row-reverse;
+    }
+    .zigzag-img img {
+      max-width: 100%;
+      width: 340px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: transform var(--transition);
+    }
+    .zigzag-img img:hover {
+      transform: scale(1.05);
+    }
+    .zigzag-desc {
+      max-width: 500px;
+      color: #fff;
+    }
+    .zigzag-desc h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+    .zigzag-desc p {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-bottom: 1rem;
+    }
+    @media (max-width: 768px) {
+      .zigzag-item {
+        flex-direction: column !important;
+      }
+      .zigzag-img img {
+        width: 100%;
+      }
+    }
+  </style>
+
+  <script>
+    ScrollReveal().reveal('.zigzag-item', { interval: 150, distance: '40px', origin: 'bottom', duration: 1000, easing: 'ease-in-out' });
+  </script>
+
+    <!-- SVG Animated Icons -->
+    <svg style="display:none;">
+        <symbol id="icon-funnel" viewBox="0 0 24 24">
+            <path d="M3 4h18l-7 9v5l-4 2v-7z" fill="#533483"/>
+        </symbol>
+    </svg>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+        // Navigation active link
+        const navLinks = document.querySelectorAll('nav a');
+        window.addEventListener('scroll', () => {
+            let fromTop = window.scrollY + 80;
+            navLinks.forEach(link => {
+                let section = document.querySelector(link.getAttribute('href'));
+                if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            });
+        });
+        // Smooth scroll for nav
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({behavior: 'smooth'});
+            });
+        });
+        // ScrollReveal animations
+        ScrollReveal().reveal('.about-container', { delay: 100, distance: '40px', origin: 'bottom', duration: 900, easing: 'ease-in-out' });
+        ScrollReveal().reveal('.portfolio-item', { interval: 150, distance: '40px', origin: 'bottom', duration: 900, easing: 'ease-in-out' });
+        ScrollReveal().reveal('.contact-container', { delay: 100, distance: '40px', origin: 'bottom', duration: 900, easing: 'ease-in-out' });
+        // Contact form (demo only)
+        document.querySelector('.contact-form').addEventListener('submit', function(e){
+            e.preventDefault();
+            alert('Merci pour votre message !');
+            this.reset();
+        });
+    </script>
+    <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <p>&copy; 2025 DCMFunnel. Tous droits réservés.</p>
+      <div class="footer-links">
+        <a href="#accueil">Accueil</a>
+        <a href="#about">À propos</a>
+        <a href="#portfolio">Portfolio</a>
+        <!-- <a href="#contact">Contact</a> -->
+      </div>
+    </div>
+<style>
+    footer {
+      background: rgba(255,255,255,0.05);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      color: #fff;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 4rem;
+    }
+    .footer-container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .footer-container p {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      opacity: 0.8;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+      opacity: 0.8;
+      transition: color var(--transition);
+    }
+    .footer-links a:hover {
+      color: #533483;
+    }
+  </style>
+
+  <script>
+    ScrollReveal().reveal('footer', { delay: 200, distance: '20px', origin: 'bottom', duration: 800, easing: 'ease-in-out' });
+  </script>
+  </footer>
+  
+  
+</body>
+</html>
+</div></section></div></a></header>
